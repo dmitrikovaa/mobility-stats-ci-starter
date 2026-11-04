@@ -1,5 +1,4 @@
 name: Python CI
-name: Run tests
 run: uv run --locked pytest -q
 
 on:
@@ -10,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  quality:
+  quality1:
     runs-on: ubuntu-latest
   
   quality:
