@@ -1,20 +1,24 @@
-from mobility_stats.rides import count_by_rider_type,average_duration,busiest_start_station
+from mobility_stats.rides import average_duration, busiest_start_station, count_by_rider_type
 
 
-def build_summary(a):
-    """Build a compact dictionary with headline statistics."""
-    b={"ride_count":len(a),"average_duration":average_duration(a),"rider_types":count_by_rider_type(a)}
-    if a:
-      b["busiest_start_station"]=busiest_start_station(a)
+def build_summary(rid):
+    """Build rides compact dictionary with headline statistics."""
+    counts = {
+        "ride_count": len(rid),
+        "average_duration": average_duration(rid),
+        "rider_types": count_by_rider_type(rid),
+    }
+    if rid:
+        counts["busiest_start_station"] = busiest_start_station(rid)
     else:
-      b["busiest_start_station"]=None
-    return b
+        counts["busiest_start_station"] = None
+    return counts
 
 
-def format_summary(a):
-    """Create a human-readable text summary."""
-    title=f"Mobility summary"
-    line1=f"Rides: {a['ride_count']}"
-    line2=f"Average duration: {a['average_duration']:.1f} min"
-    line3=f"Busiest start: {a['busiest_start_station']}"
-    return title+"\n"+line1+"\n"+line2+"\n"+line3
+def format_summary(rid):
+    """Create rides human-readable text summary."""
+    title = "Mobility summary"
+    line1 = f"Rides: {rid['ride_count']}"
+    line2 = f"Average duration: {rid['average_duration']:.1f} min"
+    line3 = f"Busiest start: {rid['busiest_start_station']}"
+    return title + "\n" + line1 + "\n" + line2 + "\n" + line3
